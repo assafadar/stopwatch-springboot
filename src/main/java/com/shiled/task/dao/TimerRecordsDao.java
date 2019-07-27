@@ -11,6 +11,7 @@ import com.shiled.task.dao.hibernate.HibernateUtils;
 
 /**
  * 
+ * 
  * @author assaf
  * Hibernate dao layer uses as the app ORM 
  * communicating with the app's DB.
@@ -18,13 +19,14 @@ import com.shiled.task.dao.hibernate.HibernateUtils;
  * Each request takes a new hibernate session and closes it afterwards, possible also to create session pull.
  */
 @Component("timer_record_dao")
-public class TimerRecordsDao {
+public class TimerRecordsDao implements ITimerRecordDao{
 	private Session session;
 	/**
 	 * SELECT * FROM times;
 	 * @return
 	 * @throws Exception
 	 */
+	@Override
 	public List<TimerRecord> getTimeRecords()throws Exception{
 		this.session = getNewSession();
 		try {
@@ -48,7 +50,8 @@ public class TimerRecordsDao {
 	 * @return
 	 * @throws Exception
 	 */
-	public TimerRecord addTimerRecord(TimerRecord record)throws Exception{
+	@Override
+	public TimerRecord createTimerRecord(TimerRecord record)throws Exception{
 		Session session = getNewSession();
 		try {
 			session.beginTransaction();
@@ -67,6 +70,7 @@ public class TimerRecordsDao {
 	 * @param recordID
 	 * @throws Exception
 	 */
+	@Override
 	public void removeRecord(int recordID)throws Exception{
 		Session session = getNewSession();
 		try {
@@ -86,6 +90,7 @@ public class TimerRecordsDao {
 	 * TRUNCATES the table, faster than deleting all records.
 	 * @throws Exception
 	 */
+	@Override
 	public void removeAllRecords()throws Exception{
 		Session session = getNewSession();
 		try {
@@ -99,6 +104,7 @@ public class TimerRecordsDao {
 			session.close();
 		}
 	}
+	@Override
 	public TimerRecord getRecord(int recordID) throws Exception{
 		Session session = getNewSession();
 		try {
@@ -121,6 +127,5 @@ public class TimerRecordsDao {
 	private Session getNewSession() {
 		return HibernateUtils.getSessionFactory().openSession();
 	}
-
 
 }

@@ -15,15 +15,15 @@
       <!-- Assume test is the database name -->
       
       <property name = "hibernate.connection.url">
-         jdbc:mysql://HOST:3306/db?serverTimezone=UTC
+         jdbc:mysql://localhost:3306/demo-app?serverTimezone=UTC
       </property>
       
       <property name = "hibernate.connection.username">
-         USERNAME	
+         root
       </property>
       
       <property name = "hibernate.connection.password">
-         PASSWORD
+         password
       </property>
       
       <!-- List of XML mapping files -->

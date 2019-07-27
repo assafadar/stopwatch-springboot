@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.shiled.task.beans.TimerRecord;
-import com.shiled.task.controllers.TimerRecordController;
+import com.shiled.task.controllers.ITimerRecordController;
 @CrossOrigin
 @RestController
 @EnableAutoConfiguration
@@ -31,7 +31,7 @@ import com.shiled.task.controllers.TimerRecordController;
 public class TimerRecordsApi {
 	@Autowired
 	@Qualifier("timer_record_controller")
-	private TimerRecordController controller;
+	private ITimerRecordController controller;
 	
 	/**
 	 * 

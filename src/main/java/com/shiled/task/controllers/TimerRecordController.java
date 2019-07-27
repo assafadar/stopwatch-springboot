@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.shiled.task.beans.TimerRecord;
+import com.shiled.task.dao.ITimerRecordDao;
 import com.shiled.task.dao.TimerRecordsDao;
 
 /**
@@ -18,10 +19,10 @@ import com.shiled.task.dao.TimerRecordsDao;
  *Timer records controller provides data validation layer for incoming requests.
  */
 @Component("timer_record_controller")
-public class TimerRecordController {
+public class TimerRecordController implements ITimerRecordController{
 	@Autowired
 	@Qualifier("timer_record_dao")
-	private TimerRecordsDao dao;
+	private ITimerRecordDao dao;
 	
 	
 	public TimerRecordController() {
@@ -32,6 +33,7 @@ public class TimerRecordController {
 	 * @return
 	 * @throws Exception
 	 */
+	@Override
 	public List<TimerRecord> getTimeRecords()throws Exception{
 		return this.dao.getTimeRecords();
 	}
@@ -42,6 +44,7 @@ public class TimerRecordController {
 	 * @return
 	 * @throws Exception
 	 */
+	@Override
 	public TimerRecord createTimerRecord(TimerRecord record) throws Exception{
 		try {
 			/**
@@ -57,7 +60,7 @@ public class TimerRecordController {
 			/**
 			 * In case the record is valid creating a new record in DB and returns it.
 			 */
-			record = this.dao.addTimerRecord(record);
+			record = this.dao.createTimerRecord(record);
 			return record;
 		}catch (NullPointerException e) {
 			throw new IllegalArgumentException("Object has null keys");
@@ -70,6 +73,7 @@ public class TimerRecordController {
 	 * @param recordID
 	 * @throws Exception
 	 */
+	@Override
 	public void removeRecord(int recordID)throws Exception {
 		if(recordID == 0) {
 			throw new IllegalArgumentException("Record id cannot be 0");
@@ -85,10 +89,11 @@ public class TimerRecordController {
 	 * removes all records from db.
 	 * @throws Exception
 	 */
+	@Override
 	public void removeAllRecords() throws Exception{
 		this.dao.removeAllRecords();
 	}
-	
+	@Override
 	public TimerRecord getRecord(int recordID) throws Exception{
 		return this.dao.getRecord(recordID);
 	}
