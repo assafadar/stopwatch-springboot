@@ -1,0 +1,33 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+   
+      <property name = "hibernate.dialect">
+         org.hibernate.dialect.MySQLDialect
+      </property>
+      
+      <property name = "hibernate.connection.driver_class">
+         com.mysql.cj.jdbc.Driver
+      </property>
+      
+      <!-- Assume test is the database name -->
+      
+      <property name = "hibernate.connection.url">
+         jdbc:mysql://HOST:3306/db?serverTimezone=UTC
+      </property>
+      
+      <property name = "hibernate.connection.username">
+         USERNAME	
+      </property>
+      
+      <property name = "hibernate.connection.password">
+         PASSWORD
+      </property>
+      
+      <!-- List of XML mapping files -->
+      <mapping class = "com.shiled.task.beans.TimerRecord"/>
+      
+   </session-factory>
+</hibernate-configuration>

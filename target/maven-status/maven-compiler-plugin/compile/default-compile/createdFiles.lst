@@ -1,0 +1,7 @@
+com\shiled\task\dao\hibernate\HibernateUtils.class
+com\shiled\task\exceptions\ApiExceptionHandler.class
+com\shiled\task\MainApp.class
+com\shiled\task\api\TimerRecordsApi.class
+com\shiled\task\dao\TimerRecordsDao.class
+com\shiled\task\beans\TimerRecord.class
+com\shiled\task\controllers\TimerRecordController.class
